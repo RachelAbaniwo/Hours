@@ -6,8 +6,9 @@ end
 resources :categories, only: [:index, :create, :edit, :update]
 resources :entries, only: [:index]
 
+
 resources :hours, :mileages, only: [:create, :destroy, :update, :edit, :patch]do
-  resources :audits, only: [:index]
+resources :audits, only: [:index]
 end
 
 resources :reports, only: [:index]
@@ -25,3 +26,5 @@ get "user/edit" => "users#edit", as: :edit_user
 get "account/edit" => "accounts#edit", as: :edit_account
 delete "account" => "accounts#destroy", as: :destroy_account
 post "billables" => "billables#bill_entries", as: :bill_entries
+get "/entries/send-to-third-party" => "send_csv_to_third_party#index", as: :send_csv_to_third_party
+post "/entries/send-to-third-party" => "send_csv_to_third_party#new"
